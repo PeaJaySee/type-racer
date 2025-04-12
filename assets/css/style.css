@@ -1,7 +1,16 @@
 /*General Styles*/
 
+header { 
+    background-color: #ff8400;
+    padding: 20px;
+    text-align: center;
+}
+
 h1 {
     font-family: 'Macondo', cursive;
     font-size: 50px;
-    text-align: center;
 }
+
+
+/* Header Styles */
+
