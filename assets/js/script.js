@@ -24,6 +24,16 @@ function getRandomParagraph(difficulty) {
     return texts[Math.floor(Math.random() * texts.length)];
 }
 
+// Function to set the default sample text
+function setDefaultSampleText() {
+    const defaultDifficulty = "easy"; // Set the default difficulty level
+    const sampleText = getRandomParagraph(defaultDifficulty); // Get a random paragraph for the default difficulty
+    document.getElementById("sample-text").textContent = sampleText; // Set the sample text
+}
+
+// Call the function when the page loads
+document.addEventListener("DOMContentLoaded", setDefaultSampleText);
+
 // Variables to track the start and end time
 let startTime = null;
 let endTime = null;
