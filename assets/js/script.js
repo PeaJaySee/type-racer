@@ -2,14 +2,17 @@
 // Sample texts for each difficulty level
 const sampleTexts = {
     easy: [
-        "The quick brown fox jumps over the lazy dog.",
+        "This is an easy example.",
+        "Start off simple.",
         "Typing is fun and easy to learn.",
         "Practice makes perfect."
     ],
     medium: [
         "JavaScript is a versatile programming language used for web development.",
         "Bootstrap helps create responsive and mobile-friendly websites.",
-        "Typing speed tests are a great way to improve your skills."
+        "Typing speed tests are a great way to improve your skills.",
+        "The quick brown fox jumps over the lazy dog.",
+        "This example is a bit more challenging than the previous ones."
     ],
     hard: [
         "Artificial intelligence is transforming the way we interact with technology.",
@@ -31,8 +34,16 @@ function setDefaultSampleText() {
     document.getElementById("sample-text").textContent = sampleText; // Set the sample text
 }
 
-// Call the function when the page loads
-document.addEventListener("DOMContentLoaded", setDefaultSampleText);
+// Function to set the default difficulty in the dropdown
+function setDefaultDifficulty() {
+    document.getElementById("difficulty-select").value = "easy"; // Set the dropdown to "easy"
+}
+
+// Call the functions when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+    setDefaultDifficulty(); // Set the default difficulty
+    setDefaultSampleText(); // Set the default sample text
+});
 
 // Variables to track the start and end time
 let startTime = null;
