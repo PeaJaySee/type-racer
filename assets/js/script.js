@@ -12,12 +12,13 @@ const sampleTexts = {
         "Bootstrap helps create responsive and mobile-friendly websites.",
         "Typing speed tests are a great way to improve your skills.",
         "The quick brown fox jumps over the lazy dog.",
-        "This example is a bit more challenging than the previous ones."
+        "This example is more of a challenge than the previous level."
     ],
     hard: [
         "Artificial intelligence is transforming the way we interact with technology.",
         "The complexity of algorithms can vary based on their time and space efficiency.",
-        "Understanding asynchronous programming is crucial for modern web development."
+        "Understanding asynchronous programming is crucial for modern web development.",
+        "You should find this example text quite challenging to type accurately.",
     ]
 };
 
