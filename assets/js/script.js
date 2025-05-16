@@ -50,6 +50,30 @@ document.addEventListener("DOMContentLoaded", () => {
 let startTime = null;
 let endTime = null;
 
+// Function to reset the typing test
+
+function resetTest() {
+    document.getElementById("typing-input").value = ""; // Clear the typing input
+    setDefaultSampleText(); // Reset the sample text
+    document.getElementById("start-btn").disabled = false; // Enable Start button
+    document.getElementById("stop-btn").disabled = true; // Disable Stop button
+
+    // Reset Stats/Info section
+    const statsInfo = document.querySelector(".col-md-4 .p-3");
+    statsInfo.innerHTML = `
+        <h2>Stats/Info</h2>
+        <p>This is where additional information or stats will be displayed.</p>
+    `;
+
+    // Reset timer variables
+    startTime = null;
+    endTime = null;
+}
+
+// Event listener for the Retry button
+document.getElementById("retry-btn").addEventListener("click", resetTest);
+
+
 // Function to start the typing test
 function startTypingTest() {
     startTime = new Date(); // Record the start time
