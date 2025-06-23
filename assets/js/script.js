@@ -92,6 +92,33 @@ function stopTypingTest() {
     displayTestTime(timeTaken); // Display the test time
 }
 
+
+// Function to calculate and display typing accuracy
+function updateTypingAccuracy() {
+    const userInput = document.getElementById("typing-input").value;
+    const sampleText = document.getElementById("sample-text").textContent.trim();
+
+    let correctChars = 0;
+    for (let i = 0; i < userInput.length; i++) {
+        if (userInput[i] === sampleText[i]) {
+            correctChars++;
+        }
+    }
+    const accuracy = userInput.length > 0 ? ((correctChars / userInput.length) * 100).toFixed(2) : "100.00";
+
+    // Update only the accuracy line in Stats/Info, preserving other info if present
+    const statsInfo = document.querySelector(".col-md-4 .p-3");
+    let statsHtml = statsInfo.innerHTML;
+
+    // Remove any existing accuracy line
+    statsHtml = statsHtml.replace(/<p>Accuracy:.*?<\/p>/, "");
+
+    // Add updated accuracy
+    statsInfo.innerHTML = statsHtml + `<p>Accuracy: ${accuracy}%</p>`;
+
+    // Add event listener for real-time accuracy feedback
+document.getElementById("typing-input").addEventListener("input", updateTypingAccuracy);
+
 // Function to display the test time
 function displayTestTime(timeTaken) {
     const statsInfo = document.querySelector(".col-md-4 .p-3"); // Select the Stats/Info section
@@ -114,3 +141,5 @@ document.getElementById("difficulty-select").addEventListener("change", () => {
     const sampleText = getRandomParagraph(difficulty); // Get random text
     document.getElementById("sample-text").textContent = sampleText; // Update the text dynamically
 });
+
+
