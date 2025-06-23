@@ -115,9 +115,8 @@ function updateTypingAccuracy() {
 
     // Add updated accuracy
     statsInfo.innerHTML = statsHtml + `<p>Accuracy: ${accuracy}%</p>`;
-
-    // Add event listener for real-time accuracy feedback
-document.getElementById("typing-input").addEventListener("input", updateTypingAccuracy);
+}
+  
 
 // Function to display the test time
 function displayTestTime(timeTaken) {
@@ -142,4 +141,5 @@ document.getElementById("difficulty-select").addEventListener("change", () => {
     document.getElementById("sample-text").textContent = sampleText; // Update the text dynamically
 });
 
-
+  // Add event listener for real-time accuracy feedback
+document.getElementById("typing-input").addEventListener("input", updateTypingAccuracy);
