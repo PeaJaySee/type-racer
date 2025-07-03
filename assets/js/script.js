@@ -151,8 +151,14 @@ document.getElementById("typing-input").addEventListener("input", function autoS
 });
 
 // Event listener for the Stop button
-document.getElementById("stop-btn").addEventListener("click", stopTypingTest);
-
+//document.getElementById("stop-btn").addEventListener("click", stopTypingTest);
+// listen for the Enter key to stop the test
+document.getElementById("typing-input").addEventListener("keydown",function(event) {
+    if (event.key === "Enter" && testRunning) {
+        event.preventDefault(); // Prevent the default action of Enter key
+        stopTypingTest(); // Call the function to stop the test
+    }
+});
 
 // Event listener for the difficulty dropdown
 document.getElementById("difficulty-select").addEventListener("change", () => {
