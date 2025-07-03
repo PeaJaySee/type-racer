@@ -54,10 +54,11 @@ let testRunning = false; // Flag to check if the test is running
 // Function to reset the typing test
 
 function resetTest() {
-    document.getElementById("typing-input").value = ""; // Clear the typing input
-    setDefaultSampleText(); // Reset the sample text
-    document.getElementById("start-btn").disabled = false; // Enable Start button
-    document.getElementById("stop-btn").disabled = true; // Disable Stop button
+    document.getElementById("typing-input").value = "";
+    setDefaultSampleText();
+    document.getElementById("start-btn").disabled = false;
+    document.getElementById("stop-btn").disabled = true;
+    document.getElementById("typing-input").disabled = false; // Enable typing
 
     // Reset Stats/Info section
     const statsInfo = document.querySelector(".col-md-4 .p-3");
@@ -77,29 +78,30 @@ document.getElementById("retry-btn").addEventListener("click", resetTest);
 
 // Function to start the typing test
 function startTypingTest() {
-    startTime = new Date(); // Record the start time
+    startTime = new Date();
     testRunning = true;
-    document.getElementById("start-btn").disabled = true; // Disable the Start button
-    document.getElementById("stop-btn").disabled = false; // Enable the Stop button
-    document.getElementById("typing-input").value = ""; // Clear the typing input
-    document.getElementById("typing-input").focus(); // Focus on the typing input
+    document.getElementById("start-btn").disabled = true;
+    document.getElementById("stop-btn").disabled = false;
+    document.getElementById("typing-input").value = "";
+    document.getElementById("typing-input").disabled = false; // Enable typing
+    document.getElementById("typing-input").focus();
 }
 
 // Function to stop the typing test
 function stopTypingTest() {
     endTime = new Date();
     testRunning = false;
+    document.getElementById("typing-input").disabled = true; // Disable typing
     const timeTaken = ((endTime - startTime) / 1000).toFixed(2);
-    const accuracy = calculateAccuracy(); // Get final accuracy
+    const accuracy = calculateAccuracy();
     document.getElementById("start-btn").disabled = false;
     document.getElementById("stop-btn").disabled = true;
-    displayTestTime(timeTaken, accuracy); // Pass both values
+    displayTestTime(timeTaken, accuracy);
 }
 
 
-// Function to calculate and display typing accuracy
-function updateTypingAccuracy() {
-    if (!testRunning) return;
+// Function to calculate typing accuracy
+function calculateAccuracy() {
     const userInput = document.getElementById("typing-input").value;
     const sampleText = document.getElementById("sample-text").textContent.trim();
 
@@ -109,7 +111,14 @@ function updateTypingAccuracy() {
             correctChars++;
         }
     }
-    const accuracy = userInput.length > 0 ? ((correctChars / userInput.length) * 100).toFixed(2) : "100.00";
+    return userInput.length > 0 ? ((correctChars / userInput.length) * 100).toFixed(2) : "100.00";
+}
+
+// Function to calculate and display typing accuracy
+function updateTypingAccuracy() {
+    if (!testRunning) return;
+
+    const accuracy = calculateAccuracy();
 
     // Update only the accuracy line in Stats/Info, preserving other info if present
     const statsInfo = document.querySelector(".col-md-4 .p-3");
