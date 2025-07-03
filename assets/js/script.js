@@ -80,11 +80,9 @@ document.getElementById("retry-btn").addEventListener("click", resetTest);
 function startTypingTest() {
     startTime = new Date();
     testRunning = true;
-    document.getElementById("start-btn").disabled = true;
     document.getElementById("stop-btn").disabled = false;
-    document.getElementById("typing-input").value = "";
-    document.getElementById("typing-input").disabled = false; // Enable typing
-    document.getElementById("typing-input").focus();
+    document.getElementById("typing-input").disabled = false;
+    // Optionally, remove the input event listener if you want to prevent retriggering
 }
 
 // Function to stop the typing test
@@ -143,7 +141,14 @@ function displayTestTime(timeTaken, accuracy) {
 }
 
 // Event listener for the Start button
-document.getElementById("start-btn").addEventListener("click", startTypingTest);
+//document.getElementById("start-btn").addEventListener("click", startTypingTest);
+
+// Listen for the first input in the textarea to start the test
+document.getElementById("typing-input").addEventListener("input", function autoStartTest() {
+    if (!testRunning && document.getElementById("typing-input").value.length > 0) {
+        startTypingTest();
+    }
+});
 
 // Event listener for the Stop button
 document.getElementById("stop-btn").addEventListener("click", stopTypingTest);
