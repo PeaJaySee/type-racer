@@ -134,7 +134,7 @@ function updateTypingAccuracy() {
 function displayTestTime(timeTaken, accuracy) {
     const statsInfo = document.querySelector(".col-md-4 .p-3");
     statsInfo.innerHTML = `
-        <h2>Stats/Info</h2>
+        <h2>Results</h2>
         <p>Time taken: ${timeTaken} seconds</p>
         <p>Accuracy: ${accuracy}%</p>
     `;
