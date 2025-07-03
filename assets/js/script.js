@@ -85,11 +85,12 @@ function startTypingTest() {
 
 // Function to stop the typing test
 function stopTypingTest() {
-    endTime = new Date(); // Record the end time
-    const timeTaken = ((endTime - startTime) / 1000).toFixed(2); // Calculate time in seconds, rounded to 2 decimal points
-    document.getElementById("start-btn").disabled = false; // Enable the Start button
-    document.getElementById("stop-btn").disabled = true; // Disable the Stop button
-    displayTestTime(timeTaken); // Display the test time
+    endTime = new Date();
+    const timeTaken = ((endTime - startTime) / 1000).toFixed(2);
+    const accuracy = calculateAccuracy(); // Get final accuracy
+    document.getElementById("start-btn").disabled = false;
+    document.getElementById("stop-btn").disabled = true;
+    displayTestTime(timeTaken, accuracy); // Pass both values
 }
 
 
@@ -119,11 +120,12 @@ function updateTypingAccuracy() {
   
 
 // Function to display the test time
-function displayTestTime(timeTaken) {
-    const statsInfo = document.querySelector(".col-md-4 .p-3"); // Select the Stats/Info section
+function displayTestTime(timeTaken, accuracy) {
+    const statsInfo = document.querySelector(".col-md-4 .p-3");
     statsInfo.innerHTML = `
         <h2>Stats/Info</h2>
         <p>Time taken: ${timeTaken} seconds</p>
+        <p>Accuracy: ${accuracy}%</p>
     `;
 }
 
