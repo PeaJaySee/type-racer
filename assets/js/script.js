@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Variables to track the start and end time
 let startTime = null;
 let endTime = null;
+let testRunning = false; // Flag to check if the test is running
 
 // Function to reset the typing test
 
@@ -77,6 +78,7 @@ document.getElementById("retry-btn").addEventListener("click", resetTest);
 // Function to start the typing test
 function startTypingTest() {
     startTime = new Date(); // Record the start time
+    testRunning = true;
     document.getElementById("start-btn").disabled = true; // Disable the Start button
     document.getElementById("stop-btn").disabled = false; // Enable the Stop button
     document.getElementById("typing-input").value = ""; // Clear the typing input
@@ -86,6 +88,7 @@ function startTypingTest() {
 // Function to stop the typing test
 function stopTypingTest() {
     endTime = new Date();
+    testRunning = false;
     const timeTaken = ((endTime - startTime) / 1000).toFixed(2);
     const accuracy = calculateAccuracy(); // Get final accuracy
     document.getElementById("start-btn").disabled = false;
@@ -96,6 +99,7 @@ function stopTypingTest() {
 
 // Function to calculate and display typing accuracy
 function updateTypingAccuracy() {
+    if (!testRunning) return;
     const userInput = document.getElementById("typing-input").value;
     const sampleText = document.getElementById("sample-text").textContent.trim();
 
